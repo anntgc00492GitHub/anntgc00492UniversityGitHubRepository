@@ -22,7 +22,7 @@ namespace anntgc00492University.Web.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -34,9 +34,9 @@ namespace anntgc00492University.Web.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -68,9 +68,15 @@ namespace anntgc00492University.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-            if (!ModelState.IsValid)
+            // Require the user to have a confirmed email before they can log on.
+            var user = await UserManager.FindByNameAsync(model.Email);
+            if (user != null)
             {
-                return View(model);
+                if (!await UserManager.IsEmailConfirmedAsync(user.Id))
+                {
+                    ViewBag.errorMessage = "You must have a confirmed email to log on.";
+                    return View("Error");
+                }
             }
 
             // This doesn't count login failures towards account lockout
@@ -120,7 +126,7 @@ namespace anntgc00492University.Web.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -151,19 +157,28 @@ namespace anntgc00492University.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email,FullName = model.FullName,Address = model.Address};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    //  Comment the following line to prevent log in until the user is confirmed.
+                    //  await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var callbackUrl = Url.Action(
+                        "ConfirmEmail", "Account",
+                         new { userId = user.Id, code = code },
+                         protocol: Request.Url.Scheme);
+                    await UserManager.SendEmailAsync(
+                        user.Id, "Confirm your account", 
+                        "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    //kho cho phi lai 
+                    ViewBag.Message = "Check your email and confirm your account, you must be confirmed "
+                         + "before you can log in.";
 
-                    return RedirectToAction("Index", "Home");
+                    return View("Info");
                 }
                 AddErrors(result);
             }
