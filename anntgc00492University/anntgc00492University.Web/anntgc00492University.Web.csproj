@@ -272,6 +272,20 @@
       <DependentUpon>201610020948422_KhoiTaoDuLieuAccountVoi2TruongMoi.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Anntgc00492University.Data\Anntgc00492University.Data.csproj">
+      <Project>{b3925a61-3e18-4d1d-863a-d01c275206e9}</Project>
+      <Name>Anntgc00492University.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Anntgc00492University.Model\Anntgc00492University.Model.csproj">
+      <Project>{ec48c4a2-acec-4961-943f-a399a6fc466d}</Project>
+      <Name>Anntgc00492University.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Anntgc00492University.Service\Anntgc00492University.Service.csproj">
+      <Project>{4d4137d5-c23c-46ec-8ddf-98062b70851d}</Project>
+      <Name>Anntgc00492University.Service</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
