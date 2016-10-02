@@ -74,7 +74,12 @@ namespace anntgc00492University.Web.Controllers
             {
                 if (!await UserManager.IsEmailConfirmedAsync(user.Id))
                 {
-                    ViewBag.errorMessage = "You must have a confirmed email to log on.";
+                    string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account-Resend");
+                    //XUÂT BIẾN RA CHỈ ĐỂ DEBUG XEM NÓ CO CHẠY KHÔNG THÔI CAI NÀY DÙNG ĐỂ gửi lại khi cố login khi chưa confirm
+                    // Uncomment to debug locally  
+                    // ViewBag.Link = callbackUrl;
+                    ViewBag.errorMessage = "You must have a confirmed email to log on. "
+                                         + "The confirmation token has been resent to your email account.";
                     return View("Error");
                 }
             }
@@ -164,16 +169,9 @@ namespace anntgc00492University.Web.Controllers
                     //  Comment the following line to prevent log in until the user is confirmed.
                     //  await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action(
-                        "ConfirmEmail", "Account",
-                         new { userId = user.Id, code = code },
-                         protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(
-                        user.Id, "Confirm your account", 
-                        "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    //Bỏ cái cũ đi , dùng cái gửi mới, định nghĩa riêng ở dứoi cùng
+                    string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account");
+
                     //kho cho phi lai 
                     ViewBag.Message = "Check your email and confirm your account, you must be confirmed "
                          + "before you can log in.";
@@ -496,5 +494,16 @@ namespace anntgc00492University.Web.Controllers
             }
         }
         #endregion
+
+        private async Task<string> SendEmailConfirmationTokenAsync(string userID, string subject)
+        {
+            string code = await UserManager.GenerateEmailConfirmationTokenAsync(userID);
+            var callbackUrl = Url.Action("ConfirmEmail", "Account",
+               new { userId = userID, code = code }, protocol: Request.Url.Scheme);
+            await UserManager.SendEmailAsync(userID, subject,
+               "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+            return callbackUrl;
+        }
     }
 }
