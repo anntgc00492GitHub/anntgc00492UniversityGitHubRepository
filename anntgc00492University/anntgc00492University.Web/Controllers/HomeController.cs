@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace anntgc00492University.Web.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -19,7 +20,6 @@ namespace anntgc00492University.Web.Controllers
 
             return View();
         }
-
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
