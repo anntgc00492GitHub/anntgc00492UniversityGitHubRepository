@@ -58,6 +58,7 @@
     <Compile Include="Models\Instructor.cs" />
     <Compile Include="Models\OfficeAssigment.cs" />
     <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\Teaching.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

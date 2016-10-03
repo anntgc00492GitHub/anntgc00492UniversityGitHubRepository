@@ -18,7 +18,7 @@ namespace Anntgc00492University.Model.Models
         public decimal Budget { get; set; }
         [Display(Name = "Start Date"),DataType(DataType.Date),DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}",ApplyFormatInEditMode = true)]
         public DateTime StartDate { get; set; }
-        public int InstructorID { get; set; }
+        public int? InstructorID { get; set; }
         public virtual Instructor AdmInstructor { get; set; }
         public virtual ICollection<Course> Courses { get; set; }        
     }

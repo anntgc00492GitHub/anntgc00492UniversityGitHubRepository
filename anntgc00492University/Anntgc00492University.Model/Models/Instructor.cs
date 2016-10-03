@@ -13,6 +13,5 @@ namespace Anntgc00492University.Model.Models
         [DataType(DataType.Date),Display(Name = "Hire Date"),DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}",ApplyFormatInEditMode = true)]
         public DateTime HireDate { get; set; }
         public virtual OfficeAssigment OfficeAssigment { get; set; }
-        public virtual ICollection<Course> Courses { get; set; }
     }
 }
