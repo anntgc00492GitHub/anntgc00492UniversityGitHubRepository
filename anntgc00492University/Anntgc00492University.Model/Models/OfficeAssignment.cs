@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Anntgc00492University.Model.Models
 {
-    public class OfficeAssigment
+    public class OfficeAssignment
     {
         [Key,ForeignKey("Instructor")]
         public int InstructorID { get; set; }

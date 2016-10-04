@@ -9,13 +9,13 @@ using Anntgc00492University.Model.Models;
 
 namespace Anntgc00492University.Data.Repositories
 {
-    public interface IDepartmentRepository:IRepository<Department>
+    public interface ITeachingRepository:IRepository<Teaching>
     {
         
     }
-    public class DepartmentRepository:RepositoryBase<Department>, IDepartmentRepository
+    public class TeachingRepository : RepositoryBase<Teaching>, ITeachingRepository
     {
-        public DepartmentRepository(IDbFactory dbFactory) : base(dbFactory)
+        public TeachingRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }
     }

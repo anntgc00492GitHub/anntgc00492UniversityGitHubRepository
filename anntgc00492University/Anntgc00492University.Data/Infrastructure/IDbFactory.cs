@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Anntgc00492University.Data;
 
-namespace Anntgc00492University.Data.Infrastructure
+namespace anntgc00492University.Data.Infrastructure
 {
-    public interface IDbFactory
+    public interface IDbFactory:IDisposable
     {
         Anntgc00492UniversityDbContext Init();
     }

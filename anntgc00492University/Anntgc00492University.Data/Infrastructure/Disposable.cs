@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Anntgc00492University.Data.Infrastructure
+namespace anntgc00492University.Data.Infrastructure
 {
     public class Disposable:IDisposable
     {
@@ -29,6 +29,8 @@ namespace Anntgc00492University.Data.Infrastructure
 
             isDisposed = true;
         }
+
+        // Ovveride this to dispose custom objects
         protected virtual void DisposeCore()
         {
         }

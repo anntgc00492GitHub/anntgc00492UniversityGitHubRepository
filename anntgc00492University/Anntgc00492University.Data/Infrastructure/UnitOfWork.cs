@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using anntgc00492University.Data.Infrastructure;
+using Anntgc00492University.Data;
+using Anntgc00492University.Data.Infrastructure;
 
-namespace Anntgc00492University.Data.Infrastructure
+namespace anntgc00492University.Data.Infrastructure
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork:IUnitOfWork
     {
         private readonly IDbFactory dbFactory;
         private Anntgc00492UniversityDbContext dbContext;
