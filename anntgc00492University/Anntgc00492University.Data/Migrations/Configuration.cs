@@ -133,7 +133,6 @@ namespace Anntgc00492University.Data.Migrations
             }
         }
 
-
         //Thieu dien departmentn Id cung sinh ra loi, nhung khong do dinh nghia ma do Â
         public void CreateCourses(Anntgc00492UniversityDbContext context)
         {
