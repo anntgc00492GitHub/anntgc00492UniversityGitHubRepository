@@ -7,13 +7,13 @@ namespace Anntgc00492University.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ChinhSuaCourseVaInstructor : IMigrationMetadata
+    public sealed partial class db1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ChinhSuaCourseVaInstructor));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(db1));
         
         string IMigrationMetadata.Id
         {
-            get { return "201610041315108_ChinhSuaCourseVaInstructor"; }
+            get { return "201610052010562_db1"; }
         }
         
         string IMigrationMetadata.Source

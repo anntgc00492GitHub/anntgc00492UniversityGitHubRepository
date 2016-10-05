@@ -67,7 +67,7 @@ namespace Anntgc00492University.Service
             }
             if (!string.IsNullOrEmpty(searchString))
             {
-                courseList = courseList.Where(c => c.Titlte.Contains(searchString) || c.Department.Name.Contains(searchString));
+                courseList = courseList.Where(c => c.Title.Contains(searchString) || c.Department.Name.Contains(searchString));
             }
             switch (orderSort)
             {
@@ -75,7 +75,7 @@ namespace Anntgc00492University.Service
                     courseList = courseList.OrderByDescending(c => c.CourseID);
                     break;
                 case "Title":
-                    courseList = courseList.OrderByDescending(c => c.Titlte);
+                    courseList = courseList.OrderByDescending(c => c.Title);
                     break;
                 case "Credít":
                     courseList = courseList.OrderByDescending(c => c.Credits);

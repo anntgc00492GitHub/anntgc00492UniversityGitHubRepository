@@ -10,10 +10,11 @@ namespace Anntgc00492University.Model.Models
 {
     public class Course
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int CourseID { get; set; }
-        [StringLength(50,MinimumLength = 5,ErrorMessage = "Titlte must be between 5 and 50 characters")]
-        public string Titlte { get; set; }
-        [Range(0,10)]
+        [StringLength(50,MinimumLength = 2,ErrorMessage = "Titlte must be between 5 and 50 characters")]
+        public string Title { get; set; }
+        [Range(0,50)]
         public int Credits { get; set; }
         public int DepartmentID { get; set; }
         public virtual Department Department { get; set; }

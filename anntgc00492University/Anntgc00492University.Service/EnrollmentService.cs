@@ -60,7 +60,7 @@ namespace Anntgc00492University.Service
             var enrollmentList = GetAll();
             if (!string.IsNullOrEmpty(searchString))
             {
-                enrollmentList = enrollmentList.Where(d=>d.Course.Titlte.Contains(searchString) || d.Student.FullName.Contains(searchString));
+                enrollmentList = enrollmentList.Where(d=>d.Course.Title.Contains(searchString) || d.Student.FullName.Contains(searchString));
             }
             switch (orderSort)
             {
@@ -68,7 +68,7 @@ namespace Anntgc00492University.Service
                     enrollmentList = enrollmentList.OrderByDescending(d => d.EnrollmentID);
                     break;
                 case "Title":
-                    enrollmentList = enrollmentList.OrderByDescending(d => d.Course.Titlte);
+                    enrollmentList = enrollmentList.OrderByDescending(d => d.Course.Title);
                     break;
                 case "FullName":
                     enrollmentList = enrollmentList.OrderByDescending(d => d.Student.FullName);

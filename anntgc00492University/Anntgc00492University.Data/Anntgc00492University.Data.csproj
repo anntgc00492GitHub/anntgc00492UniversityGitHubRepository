@@ -57,13 +57,13 @@
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\ReponsitoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
-    <Compile Include="Migrations\201610031545160_kt.cs" />
-    <Compile Include="Migrations\201610031545160_kt.Designer.cs">
-      <DependentUpon>201610031545160_kt.cs</DependentUpon>
+    <Compile Include="Migrations\201610051935490_db.cs" />
+    <Compile Include="Migrations\201610051935490_db.Designer.cs">
+      <DependentUpon>201610051935490_db.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201610041315108_ChinhSuaCourseVaInstructor.cs" />
-    <Compile Include="Migrations\201610041315108_ChinhSuaCourseVaInstructor.Designer.cs">
-      <DependentUpon>201610041315108_ChinhSuaCourseVaInstructor.cs</DependentUpon>
+    <Compile Include="Migrations\201610052010562_db1.cs" />
+    <Compile Include="Migrations\201610052010562_db1.Designer.cs">
+      <DependentUpon>201610052010562_db1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,11 +86,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201610031545160_kt.resx">
-      <DependentUpon>201610031545160_kt.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201610051935490_db.resx">
+      <DependentUpon>201610051935490_db.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610041315108_ChinhSuaCourseVaInstructor.resx">
-      <DependentUpon>201610041315108_ChinhSuaCourseVaInstructor.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201610052010562_db1.resx">
+      <DependentUpon>201610052010562_db1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
