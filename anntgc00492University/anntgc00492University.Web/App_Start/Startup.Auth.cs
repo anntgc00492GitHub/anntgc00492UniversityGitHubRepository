@@ -7,7 +7,7 @@ using Microsoft.Owin.Security.Google;
 using Owin;
 using anntgc00492University.Web.Models;
 
-namespace anntgc00492University.Web
+namespace anntgc00492University.Web.App_Start
 {
     public partial class Startup
     {
