@@ -286,6 +286,9 @@
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\About.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Contact.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_LeftSidePartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_HeaderPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_FooterPartial.cshtml" />
     <None Include="Areas\Admin\Views\Shared\_MyLayout.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
