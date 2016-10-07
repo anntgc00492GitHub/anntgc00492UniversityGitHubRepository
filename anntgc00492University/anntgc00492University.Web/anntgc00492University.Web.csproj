@@ -78,6 +78,10 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.0\lib\net45\System.Web.Http.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -189,7 +193,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManageController.cs" />
     <Compile Include="Common\GmailEmailService.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -215,6 +221,7 @@
     <Content Include="Content\Admin\css\AdminLTE.css" />
     <Content Include="Content\Admin\css\bootstrap.css" />
     <Content Include="Content\Admin\css\bootstrap.min.css" />
+    <Content Include="Content\Admin\css\myStyle.css" />
     <Content Include="Content\Admin\css\_all-skins.min.css" />
     <Content Include="Content\Admin\img\avatar.png" />
     <Content Include="Content\Admin\img\avatar04.png" />
@@ -290,6 +297,7 @@
     <Content Include="Areas\Admin\Views\Shared\_HeaderPartial.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_FooterPartial.cshtml" />
     <None Include="Areas\Admin\Views\Shared\_MyLayout.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_SlidePartial.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -302,6 +310,13 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="UploadedFiles\1.PNG" />
+    <Content Include="UploadedFiles\10banner_Lucknow_D2_4.jpg" />
+    <Content Include="UploadedFiles\2.PNG" />
+    <Content Include="UploadedFiles\3.PNG" />
+    <Content Include="UploadedFiles\4.PNG" />
+    <Content Include="UploadedFiles\le-tot-nghiep-fai-7.jpg" />
+    <Content Include="UploadedFiles\Studentsafe-University-banner.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
