@@ -15,7 +15,7 @@ namespace Anntgc00492University.Service
         Instructor Add(Instructor instructor);
         void Update(Instructor instructor);
         void Delete(int id);
-        Instructor GetById(int id);
+        Instructor GetById(int? id);
         IEnumerable<Instructor> GetAll();
         IEnumerable<Instructor> GetByFilterSearchSort(DateTime hireDate, string searchString, string orderSort);
     }
@@ -45,7 +45,7 @@ namespace Anntgc00492University.Service
             _instructorRepoistory.Delete(id);
         }
 
-        public Instructor GetById(int id)
+        public Instructor GetById(int? id)
         {
             return _instructorRepoistory.GetSingleById(id);
         }

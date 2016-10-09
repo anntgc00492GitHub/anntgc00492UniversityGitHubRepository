@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 
 namespace anntgc00492University.Web.Controllers
 {
-    [Authorize]
+    [System.Web.Mvc.Authorize]
     public class HomeController : Controller
     {
+        [System.Web.Mvc.AllowAnonymous]
         public ActionResult Index()
         {
             return View();

@@ -193,9 +193,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CoursesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DepartmentsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ManageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\InstructorsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StudentsController.cs" />
     <Compile Include="Common\GmailEmailService.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -211,6 +213,10 @@
     <Compile Include="Migrations\201610020948422_KhoiTaoDuLieuAccountVoi2TruongMoi.Designer.cs">
       <DependentUpon>201610020948422_KhoiTaoDuLieuAccountVoi2TruongMoi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610082154246_abc.cs" />
+    <Compile Include="Migrations\201610082154246_abc.Designer.cs">
+      <DependentUpon>201610082154246_abc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -219,6 +225,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Admin\css\AdminLTE.css" />
+    <Content Include="Content\Admin\css\blue.css" />
     <Content Include="Content\Admin\css\bootstrap.css" />
     <Content Include="Content\Admin\css\bootstrap.min.css" />
     <Content Include="Content\Admin\css\myStyle.css" />
@@ -255,6 +262,7 @@
     <Content Include="Content\Admin\js\bootstrap.js" />
     <Content Include="Content\Admin\js\demo.js" />
     <Content Include="Content\Admin\js\fastclick.js" />
+    <Content Include="Content\Admin\js\icheck.js" />
     <Content Include="Content\Admin\js\jquery-2.2.3.min.js" />
     <Content Include="Content\Admin\js\jquery.slimscroll.js" />
     <Content Include="Content\bootstrap.css" />
@@ -268,36 +276,34 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\Lockout.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\Info.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\Error.cshtml" />
-    <Content Include="Areas\Admin\Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Areas\Admin\Views\Account\ConfirmEmail.cshtml" />
-    <Content Include="Areas\Admin\Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Areas\Admin\Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Areas\Admin\Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Areas\Admin\Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
-    <Content Include="Areas\Admin\Views\Account\Register.cshtml" />
-    <Content Include="Areas\Admin\Views\Account\ResetPassword.cshtml" />
-    <Content Include="Areas\Admin\Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Areas\Admin\Views\Account\SendCode.cshtml" />
-    <Content Include="Areas\Admin\Views\Account\VerifyCode.cshtml" />
-    <Content Include="Areas\Admin\Views\Manage\AddPhoneNumber.cshtml" />
-    <Content Include="Areas\Admin\Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Areas\Admin\Views\Manage\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Areas\Admin\Views\Manage\SetPassword.cshtml" />
-    <Content Include="Areas\Admin\Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\About.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Contact.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LeftSidePartial.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_HeaderPartial.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_FooterPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Departments\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Departments\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Departments\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Departments\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Departments\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Instructors\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Instructors\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Instructors\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Instructors\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Instructors\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Courses\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Courses\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Courses\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Courses\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Courses\Index.cshtml" />
     <None Include="Areas\Admin\Views\Shared\_MyLayout.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_SlidePartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Students\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Students\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Students\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Students\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Students\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -337,8 +343,8 @@
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\Login2.cshtml" />
+    <Content Include="Views\Account\Register2.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
@@ -350,8 +356,13 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial2.cshtml" />
     <Content Include="Views\Shared\Info.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Shared\_MyLayoutNonLogin.cshtml" />
+    <Content Include="Views\Shared\_SlidePartial.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -371,6 +382,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610020948422_KhoiTaoDuLieuAccountVoi2TruongMoi.resx">
       <DependentUpon>201610020948422_KhoiTaoDuLieuAccountVoi2TruongMoi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610082154246_abc.resx">
+      <DependentUpon>201610082154246_abc.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

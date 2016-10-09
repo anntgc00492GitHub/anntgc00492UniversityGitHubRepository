@@ -15,7 +15,7 @@ namespace Anntgc00492University.Service
         Department Add(Department department);
         void Update(Department department);
         void Delete(int id);
-        Department GetById(int id);
+        Department GetById(int? id);
         IEnumerable<Department> GetAll();
         IEnumerable<Department> GetBySearchSort(string searchString, string orderSort);
     }
@@ -45,7 +45,7 @@ namespace Anntgc00492University.Service
             _InstructorRepoistory.Delete(id);
         }
 
-        public Department GetById(int id)
+        public Department GetById(int? id)
         {
             return _InstructorRepoistory.GetSingleById(id);
         }

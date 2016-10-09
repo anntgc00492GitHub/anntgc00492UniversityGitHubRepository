@@ -15,7 +15,7 @@ namespace Anntgc00492University.Service
         Enrollment Add(Enrollment enrollment);
         void Update(Enrollment enrollment);
         void Delete(int id);
-        Enrollment GetById(int id);
+        Enrollment GetById(int? id);
         IEnumerable<Enrollment> GetAll();
         IEnumerable<Enrollment> GetBySearchSort(string searchString, string orderSort);
     }
@@ -45,7 +45,7 @@ namespace Anntgc00492University.Service
             _InstructorRepoistory.Delete(id);
         }
 
-        public Enrollment GetById(int id)
+        public Enrollment GetById(int? id)
         {
             return _InstructorRepoistory.GetSingleById(id);
         }

@@ -15,7 +15,7 @@ namespace Anntgc00492University.Service
         Course Add(Course course);
         void Update(Course course);
         void Delete(int id);
-        Course GetById(int id);
+        Course GetById(int? id);
         IEnumerable<Course> GetAll();
         IEnumerable<Course> GetByFilterSearchSort(int? departmentId,string searchString, string orderSort);
     }
@@ -47,7 +47,7 @@ namespace Anntgc00492University.Service
             _courseRepoistory.Delete(id);
         }
 
-        public Course GetById(int id)
+        public Course GetById(int? id)
         {
             return _courseRepoistory.GetSingleById(id);
         }

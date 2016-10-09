@@ -48,7 +48,7 @@ namespace Anntgc00492University.Data.Infrastructure
             var entity = dbSet.Find(id);
             return dbSet.Remove(entity);
         }
-        public virtual T GetSingleById(int id)
+        public virtual T GetSingleById(int? id)
         {
             return dbSet.Find(id);
         }

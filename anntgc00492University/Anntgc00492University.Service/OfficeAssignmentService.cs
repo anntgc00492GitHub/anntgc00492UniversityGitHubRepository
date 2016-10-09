@@ -15,7 +15,7 @@ namespace Anntgc00492University.Service
         OfficeAssignment Add(OfficeAssignment instructor);
         void Update(OfficeAssignment instructor);
         void Delete(int id);
-        OfficeAssignment GetById(int id);
+        OfficeAssignment GetById(int? id);
         IEnumerable<OfficeAssignment> GetAll();
         IEnumerable<OfficeAssignment> GetBySearchSort(string searchString, string orderSort);
     }
@@ -45,7 +45,7 @@ namespace Anntgc00492University.Service
             _instructorRepoistory.Delete(id);
         }
 
-        public OfficeAssignment GetById(int id)
+        public OfficeAssignment GetById(int? id)
         {
             return _instructorRepoistory.GetSingleById(id);
         }
