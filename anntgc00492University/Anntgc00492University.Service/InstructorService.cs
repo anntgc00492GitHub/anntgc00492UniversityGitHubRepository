@@ -18,6 +18,7 @@ namespace Anntgc00492University.Service
         Instructor GetById(int? id);
         IEnumerable<Instructor> GetAll();
         IEnumerable<Instructor> GetByFilterSearchSort(DateTime hireDate, string searchString, string orderSort);
+        void Save();
     }
     public class InstructorService : IInstructorService
     {

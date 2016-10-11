@@ -18,6 +18,7 @@ namespace Anntgc00492University.Service
         Enrollment GetById(int? id);
         IEnumerable<Enrollment> GetAll();
         IEnumerable<Enrollment> GetBySearchSort(string searchString, string orderSort);
+        void Save();
     }
     public class EnrollmentService : IEnrollmentService
     {

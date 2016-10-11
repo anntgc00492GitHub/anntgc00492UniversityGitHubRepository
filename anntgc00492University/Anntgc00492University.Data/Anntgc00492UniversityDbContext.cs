@@ -12,7 +12,7 @@ namespace Anntgc00492University.Data
     {
         public Anntgc00492UniversityDbContext() : base("DefaultConnection")
         {
-            Configuration.LazyLoadingEnabled = false;
+            Configuration.LazyLoadingEnabled = true;
         }
         public DbSet<Student> Students { get; set; }
         public DbSet<Instructor> Instructors { get; set; }

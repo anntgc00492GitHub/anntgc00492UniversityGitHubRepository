@@ -18,6 +18,7 @@ namespace Anntgc00492University.Service
         Department GetById(int? id);
         IEnumerable<Department> GetAll();
         IEnumerable<Department> GetBySearchSort(string searchString, string orderSort);
+        void Save();
     }
     public class DepartmentService : IDepartmentService
     {

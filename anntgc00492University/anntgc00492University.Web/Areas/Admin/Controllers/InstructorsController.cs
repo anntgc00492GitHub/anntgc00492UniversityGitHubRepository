@@ -7,19 +7,27 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Anntgc00492University.Data;
+using Anntgc00492University.Data.Migrations;
 using Anntgc00492University.Model.Models;
+using Anntgc00492University.Service;
 
 namespace anntgc00492University.Web.Areas.Admin.Controllers
 {
     public class InstructorsController : Controller
     {
-        private Anntgc00492UniversityDbContext db = new Anntgc00492UniversityDbContext();
+        private IInstructorService _instructorService;
+
+        public InstructorsController(IInstructorService instructorService)
+        {
+            _instructorService = instructorService;
+        }
 
         // GET: Admin/Instructors
         public ActionResult Index()
         {
-            var instructors = db.Instructors.Include(i => i.OfficeAssignment);
-            return View(instructors.ToList());
+            //var instructors = db.Instructors.Include(i => i.OfficeAssignment);
+            //return View(instructors.ToList());
+            return View(_instructorService.GetAll().ToList());
         }
 
         // GET: Admin/Instructors/Details/5
@@ -29,7 +37,7 @@ namespace anntgc00492University.Web.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Instructor instructor = db.Instructors.Find(id);
+            Instructor instructor = _instructorService.GetById(id);
             if (instructor == null)
             {
                 return HttpNotFound();
@@ -40,7 +48,7 @@ namespace anntgc00492University.Web.Areas.Admin.Controllers
         // GET: Admin/Instructors/Create
         public ActionResult Create()
         {
-            ViewBag.ID = new SelectList(db.OfficeAssigments, "InstructorID", "Location");
+            //ViewBag.ID = new SelectList(db.OfficeAssigments, "InstructorID", "Location");
             return View();
         }
 
@@ -53,12 +61,14 @@ namespace anntgc00492University.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Instructors.Add(instructor);
-                db.SaveChanges();
+                //db.Instructors.Add(instructor);
+                //db.SaveChanges();
+                _instructorService.Add(instructor);
+                _instructorService.Save();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ID = new SelectList(db.OfficeAssigments, "InstructorID", "Location", instructor.ID);
+            //ViewBag.ID = new SelectList(db.OfficeAssigments, "InstructorID", "Location", instructor.ID);
             return View(instructor);
         }
 
@@ -69,12 +79,12 @@ namespace anntgc00492University.Web.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Instructor instructor = db.Instructors.Find(id);
+            Instructor instructor = _instructorService.GetById(id);
             if (instructor == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ID = new SelectList(db.OfficeAssigments, "InstructorID", "Location", instructor.ID);
+            //ViewBag.ID = new SelectList(db.OfficeAssigments, "InstructorID", "Location", instructor.ID);
             return View(instructor);
         }
 
@@ -87,11 +97,11 @@ namespace anntgc00492University.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(instructor).State = EntityState.Modified;
-                db.SaveChanges();
+                _instructorService.Save();
+                _instructorService.Save();;
                 return RedirectToAction("Index");
             }
-            ViewBag.ID = new SelectList(db.OfficeAssigments, "InstructorID", "Location", instructor.ID);
+            //ViewBag.ID = new SelectList(db.OfficeAssigments, "InstructorID", "Location", instructor.ID);
             return View(instructor);
         }
 
@@ -102,7 +112,7 @@ namespace anntgc00492University.Web.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Instructor instructor = db.Instructors.Find(id);
+            Instructor instructor = _instructorService.GetById(id);
             if (instructor == null)
             {
                 return HttpNotFound();
@@ -115,9 +125,8 @@ namespace anntgc00492University.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Instructor instructor = db.Instructors.Find(id);
-            db.Instructors.Remove(instructor);
-            db.SaveChanges();
+            _instructorService.Delete(id);
+            _instructorService.Save();
             return RedirectToAction("Index");
         }
 
@@ -125,7 +134,7 @@ namespace anntgc00492University.Web.Areas.Admin.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                //db.Dispose();
             }
             base.Dispose(disposing);
         }

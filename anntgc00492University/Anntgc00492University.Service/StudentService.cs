@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Anntgc00492University.Data.Infrastructure;
 using Anntgc00492University.Data.Repositories;
 using Anntgc00492University.Model.Models;
+using Anntgc00492University.Model.ViewModels;
 
 namespace Anntgc00492University.Service
 {
@@ -16,7 +17,12 @@ namespace Anntgc00492University.Service
         void Delete(int id);
         Student GetById(int? id);
         IEnumerable<Student> GetAll();
-        IEnumerable<Student> GetByFilterSearchSort(DateTime enrollmentDate, string searchString, string orderSort);
+        IEnumerable<Student> GetStudentHavingEnrollment();
+        IEnumerable<Student> GetStudentNotHavingEnrollment();
+        IEnumerable<Student> GetByFilterSearchSort(bool? filter, string searchString, string orderSort);
+        void Save();
+
+        IEnumerable<EnrollmentDateGroup> GetStudentByEnrollmentDateGroup();
     }
     public class StudentService:IStudentService
     {
@@ -54,12 +60,29 @@ namespace Anntgc00492University.Service
             return _studentRepoistory.GetAll();
         }
 
-        public IEnumerable<Student> GetByFilterSearchSort(DateTime enrollmentDate, string searchString, string orderSort)
+        public IEnumerable<Student> GetStudentHavingEnrollment()
+        {
+            return _studentRepoistory.GetStudentHavingEnrollment();
+        }
+
+        public IEnumerable<Student> GetStudentNotHavingEnrollment()
+        {
+            return _studentRepoistory.GetStudentNotHavingEnrollment();
+        }
+
+        public IEnumerable<Student> GetByFilterSearchSort(bool? filter, string searchString, string orderSort)
         {
             var studentList = GetAll();
-            if (!string.IsNullOrEmpty(enrollmentDate.ToString()))
+            if (filter.HasValue)
             {
-                studentList = studentList.Where(s =>s.EnrollmentDate==enrollmentDate);
+                if (filter == true)
+                {
+                    studentList=_studentRepoistory.GetStudentHavingEnrollment();
+                }
+                else
+                {
+                    studentList= _studentRepoistory.GetStudentNotHavingEnrollment();
+                }
             }
             if (!string.IsNullOrEmpty(searchString))
             {
@@ -67,6 +90,9 @@ namespace Anntgc00492University.Service
             }
             switch (orderSort)
             {
+                case "Id":
+                    studentList = studentList.OrderBy(s => s.ID);
+                    break;
                 case "FirstName":
                     studentList = studentList.OrderByDescending(s => s.FirstMidName);
                     break;
@@ -85,6 +111,11 @@ namespace Anntgc00492University.Service
         public void Save()
         {
             _unitOfWork.Commit();
+        }
+
+        public IEnumerable<EnrollmentDateGroup> GetStudentByEnrollmentDateGroup()
+        {
+            return  _studentRepoistory.GetStudentByEnrollmentDateGroup();
         }
     }
 }

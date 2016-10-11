@@ -18,6 +18,7 @@ namespace Anntgc00492University.Service
         OfficeAssignment GetById(int? id);
         IEnumerable<OfficeAssignment> GetAll();
         IEnumerable<OfficeAssignment> GetBySearchSort(string searchString, string orderSort);
+        void Save();
     }
     public class OfficeAssignmentService : IOfficeAssignmentService
     {

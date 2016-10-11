@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Anntgc00492University.Data;
 using Anntgc00492University.Model.Models;
 using Anntgc00492University.Service;
+using PagedList;
 
 namespace anntgc00492University.Web.Areas.Admin.Controllers
 {
@@ -22,10 +23,61 @@ namespace anntgc00492University.Web.Areas.Admin.Controllers
         }
 
 
-        // GET: Admin/Students
-        public ActionResult Index()
+        public ActionResult Index(
+                   bool? filter,
+                   string searchString,
+
+                   bool? currentlySelectedFilterParam,
+                   string currentSearchStringParam,
+                   string sortOrderParam,
+
+                   int? page)
         {
-            return View(_studentService.GetAll());
+
+            if (filter.HasValue && !string.IsNullOrEmpty(searchString))
+            {
+                page = 1;
+            }
+            else if (filter.HasValue)
+            {
+                page = 1;
+                searchString = currentSearchStringParam;
+            }
+            else if (!string.IsNullOrEmpty(searchString))
+            {
+                page = 1;
+                filter = currentlySelectedFilterParam;
+            }
+            else
+            {
+                filter = currentlySelectedFilterParam;
+                searchString = currentSearchStringParam;
+            }
+
+
+            var studentList = _studentService.GetByFilterSearchSort(filter, searchString, sortOrderParam);
+
+            ViewBag.CurrentSearchString = searchString;
+            PoupulateIsEnrolled(filter);
+            ViewBag.CurrentlySelectedIsEnrolled = filter;
+            ViewBag.sortOrderParam = sortOrderParam;
+
+            ViewBag.IdSortParm = string.IsNullOrEmpty(sortOrderParam) ? "Id" : "";
+            ViewBag.FirstNameSortParm = string.IsNullOrEmpty(sortOrderParam) ? "FirstName" : "";
+            ViewBag.EnrollmentDateSortParm = string.IsNullOrEmpty(sortOrderParam) ? "EnrollmentDate" : "";
+
+            return View(studentList.ToPagedList(page ?? 1, 2));
+        }
+
+
+        private void PoupulateIsEnrolled(bool? selectedFilter)
+        {
+            var list = new List<SelectListItem>
+                {
+                    new SelectListItem{ Text="Course Enrolled", Value = "true"},
+                    new SelectListItem{ Text="Not Course Erolled", Value = "false" },
+                };
+            ViewBag.CurrentFilteredListWithSelectedItem = new SelectList(list, "Value", "Text", selectedFilter);
         }
 
         // GET: Admin/Students/Details/5
@@ -61,6 +113,7 @@ namespace anntgc00492University.Web.Areas.Admin.Controllers
                 if (ModelState.IsValid)
                 {
                     _studentService.Add(student);
+                    _studentService.Save();
                     return RedirectToAction("Index");
                 }
             }
@@ -96,6 +149,7 @@ namespace anntgc00492University.Web.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 _studentService.Update(student);
+                _studentService.Save();
                 return RedirectToAction("Index");
             }
             return View(student);
@@ -122,6 +176,7 @@ namespace anntgc00492University.Web.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             _studentService.Delete(id);
+            _studentService.Save();
             return RedirectToAction("Index");
         }
 

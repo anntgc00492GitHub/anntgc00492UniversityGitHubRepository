@@ -18,6 +18,7 @@ namespace Anntgc00492University.Service
         Course GetById(int? id);
         IEnumerable<Course> GetAll();
         IEnumerable<Course> GetByFilterSearchSort(int? departmentId,string searchString, string orderSort);
+        void Save();
     }
     public class CourseService:ICourseService
     {
