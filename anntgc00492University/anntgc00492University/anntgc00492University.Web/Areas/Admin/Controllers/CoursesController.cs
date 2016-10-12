@@ -11,6 +11,8 @@ using Anntgc00492University.Model.Models;
 
 namespace anntgc00492University.Web.Areas.Admin.Controllers
 {
+    [Authorize]
+    [OutputCacheAttribute(VaryByParam = "*", Duration = 0, NoStore = true)]
     public class CoursesController : Controller
     {
         private Anntgc00492UniversityDbContext db = new Anntgc00492UniversityDbContext();

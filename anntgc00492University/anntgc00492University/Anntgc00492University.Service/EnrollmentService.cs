@@ -19,6 +19,7 @@ namespace Anntgc00492University.Service
         IEnumerable<Enrollment> GetAll();
         IEnumerable<Enrollment> GetBySearchSort(string searchString, string orderSort);
         void Save();
+        bool IsEnrolled(int studentId, int courseId);
     }
     public class EnrollmentService : IEnrollmentService
     {
@@ -84,5 +85,20 @@ namespace Anntgc00492University.Service
         {
             _unitOfWork.Commit();
         }
+
+        public bool IsEnrolled(int studentId, int courseId)
+        {
+            var enrollmentList = GetAll().Where(e => e.StudentID == studentId);
+            if (enrollmentList.Any())
+            {
+                enrollmentList = enrollmentList.Where(e => e.CourseID == courseId);
+                if (enrollmentList.Count()>0)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
     }
 }

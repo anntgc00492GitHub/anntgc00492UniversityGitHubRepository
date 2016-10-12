@@ -37,19 +37,33 @@
                 @Html.DisplayNameFor(m => m.Enrollments)
             </dt>
             <dd>
+
                 <table class="table">
-                    <tr>
-                        <th>Course Title</th>
-                        <th>Grade</th>
-                    </tr>
-                    @foreach (var item in Model.Enrollments)
+                    @if (Model.Enrollments.Count>0)
                     {
                         <tr>
-                            <td>
-                                @Html.DisplayFor(mi => item.Course.Title)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(mi => item.Grade)
+                            <th>Course Title</th>
+                            <th>Grade</th>
+                        </tr>
+                        foreach (var item in Model.Enrollments)
+                        {
+                            <tr>
+
+                                <td>
+                                    @Html.DisplayFor(mi => item.Course.Title)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(mi => item.Grade)
+                                </td>
+
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="2">
+                                <p>There is no enrollment</p>
                             </td>
                         </tr>
                     }
@@ -60,6 +74,7 @@
     <div class="box-footer">
         <p>
             @Html.ActionLink("Edit this Student", "Edit", new { id = Model.ID }) |
+            @Html.ActionLink("Create new Enrollment", "Create", "Enrollments", new { area = "Admin", id = Model.ID }, null)|
             @Html.ActionLink("Back to Student List", "Index")
         </p>
     </div>

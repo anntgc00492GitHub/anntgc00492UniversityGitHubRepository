@@ -1,8 +1,8 @@
-﻿@model IEnumerable<Anntgc00492University.Model.Models.Instructor>
+﻿@model IEnumerable<Anntgc00492University.Model.Models.Teaching>
 
 @{
     ViewBag.Title = "Index";
-    ViewBag.ManagedObject = "Instructor";
+    ViewBag.ManagedObject = "Teachings";
     ViewBag.ManagedAction = "List";
 }
 
@@ -25,21 +25,15 @@
                             <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                                 <thead>
                                 <tr>
-                                    <th></th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.FirstMidName)
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.LastName)
+                                        @Html.DisplayNameFor(model => model.Course.Title)
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.OfficeAssignment.Location)
+                                        @Html.DisplayNameFor(model => model.Instructor.FirstMidName)
                                     </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.HireDate)
-                                    </th>
-
-                                    <th></th>
+                                    <th>Tasks</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -48,25 +42,18 @@
                                         <tr>
                                             <td></td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.OfficeAssignment.Location)
+                                                @Html.DisplayFor(modelItem => item.Course.Title)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.HireDate)
+                                                @Html.DisplayFor(modelItem => item.Instructor.FirstMidName)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.FirstMidName)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.LastName)
-                                            </td>
-                                            <td>
-                                                @Html.ActionLink("Edit", "Edit", new {id = item.ID}) |
-                                                @Html.ActionLink("Details", "Details", new {id = item.ID}) |
-                                                @Html.ActionLink("Delete", "Delete", new {id = item.ID})
+                                                @Html.ActionLink("Edit", "Edit", new {Id = item.InstructorID, CourseId = item.CourseID}) |
+                                                @Html.ActionLink("Details", "Details", new {Id = item.InstructorID, CourseId = item.CourseID}) |
+                                                @Html.ActionLink("Delete", "Delete", new {Id = item.InstructorID, CourseId = item.CourseID})
                                             </td>
                                         </tr>
                                     }
-
                                 </tbody>
                                 <tfoot>
                                 </tfoot>
@@ -80,3 +67,6 @@
         <!-- /.box -->
     </div>
 </div>
+
+
+

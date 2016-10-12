@@ -54,6 +54,7 @@
                             <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                                 <thead>
                                 <tr role="row">
+                                    <th></th>
                                     <th>
                                         @Html.ActionLink("Id", "Index",
                                             new
@@ -62,7 +63,7 @@
                                                 currentlySelectedFilterParam = ViewBag.CurrentlySelectedFilter,
                                                 currentSearchStringParam = ViewBag.CurrentSearchString
                                             }
-                                        )
+                                            )
                                     </th>
                                     <th>
                                         @Html.ActionLink("FirstName", "Index",
@@ -94,6 +95,8 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr>
+                                        <td>
+                                        </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.ID)
                                         </td>

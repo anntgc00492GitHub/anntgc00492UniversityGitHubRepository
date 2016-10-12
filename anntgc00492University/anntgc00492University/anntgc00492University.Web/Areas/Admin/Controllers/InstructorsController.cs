@@ -13,6 +13,8 @@ using Anntgc00492University.Service;
 
 namespace anntgc00492University.Web.Areas.Admin.Controllers
 {
+    [Authorize]
+    [OutputCacheAttribute(VaryByParam = "*", Duration = 0, NoStore = true)]
     public class InstructorsController : Controller
     {
         private IInstructorService _instructorService;

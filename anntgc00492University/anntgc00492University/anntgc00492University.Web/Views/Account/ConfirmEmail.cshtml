@@ -1,10 +1,16 @@
 ﻿@{
     ViewBag.Title = "Confirm Email";
+    Layout = "~/Views/Shared/_MyLayoutNonLogin.cshtml";
 }
 
-<h2>@ViewBag.Title.</h2>
-<div>
-    <p>
-        Thank you for confirming your email. Please @Html.ActionLink("Click here to Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
-    </p>
+<div class="login-box">
+    <div class="login-logo">
+        <a href="#"><b>FGR</b>University</a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+        <p>
+            Thank you for confirming your email.<br/> Please @Html.ActionLink("Click here to Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+        </p>
+    </div>
 </div>

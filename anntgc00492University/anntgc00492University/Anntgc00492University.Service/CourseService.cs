@@ -17,19 +17,20 @@ namespace Anntgc00492University.Service
         void Delete(int id);
         Course GetById(int? id);
         IEnumerable<Course> GetAll();
-        IEnumerable<Course> GetByFilterSearchSort(int? departmentId,string searchString, string orderSort);
+        IEnumerable<Course> GetByFilterSearchSort(int? filter1,int? filter2,string searchString, string orderSort);
         void Save();
+        IEnumerable<Course> GetCourseByInstructorId(int? id);
     }
     public class CourseService:ICourseService
     {
         private ICourseRepository _courseRepoistory;
-        private ITeachingRepository _teachingRepository;
+        private ICourseRepository _courseRepository;
         private IUnitOfWork _unitOfWork;
 
-        public CourseService(ICourseRepository courseRepoistory,ITeachingRepository teachingRepository,IUnitOfWork unitOfWork)
+        public CourseService(ICourseRepository courseRepoistory,ICourseRepository courseRepository,IUnitOfWork unitOfWork)
         {
             _courseRepoistory = courseRepoistory;
-            _teachingRepository = teachingRepository;
+            _courseRepository = courseRepository;
             _unitOfWork = unitOfWork;
         }
 
@@ -59,33 +60,36 @@ namespace Anntgc00492University.Service
         }
 
 
-        public IEnumerable<Course> GetByFilterSearchSort(int? departmentId, string searchString, string orderSort)
+        public IEnumerable<Course> GetCourseByInstructorId(int? id)
+        {
+            return _courseRepoistory.GetCourseByInstructorId(id);
+        }
+
+        public IEnumerable<Course> GetByFilterSearchSort(int? filter1, int? filter2, string searchString, string orderSort)
         {
             var courseList = GetAll();
-            if (!string.IsNullOrEmpty(departmentId.ToString()))
+            if (!string.IsNullOrEmpty(filter1.ToString()))
             {
-                courseList = courseList.Where(c => c.DepartmentID == departmentId);
+                courseList = courseList.Where(c => c.DepartmentID == filter1);
+            }
+            if (!string.IsNullOrEmpty(filter2.ToString()))
+            {
+                courseList = GetCourseByInstructorId(filter2);
             }
             if (!string.IsNullOrEmpty(searchString))
             {
-                courseList = courseList.Where(c => c.Title.Contains(searchString) || c.Department.Name.Contains(searchString));
+                courseList = courseList.Where(t => t.Title.Contains(searchString));
             }
             switch (orderSort)
             {
-                case "CourseID":
+                case "CourseId":
                     courseList = courseList.OrderByDescending(c => c.CourseID);
                     break;
                 case "Title":
                     courseList = courseList.OrderByDescending(c => c.Title);
                     break;
-                case "Credít":
-                    courseList = courseList.OrderByDescending(c => c.Credits);
-                    break;
-                case "Department":
-                    courseList = courseList.OrderByDescending(c => c.Department.Name);
-                    break;
-                default:
-                    courseList = courseList.OrderByDescending(c => c.CourseID);
+                case "Instructor":
+                    courseList = courseList.OrderByDescending(t => t.Teachings.Select(i=>i.Instructor.LastName));
                     break;
             }
             return courseList;

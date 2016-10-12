@@ -203,9 +203,11 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CoursesController.cs" />
     <Compile Include="Areas\Admin\Controllers\DepartmentsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\EnrollmentsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\InstructorsController.cs" />
     <Compile Include="Areas\Admin\Controllers\StudentsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TeachingsController.cs" />
     <Compile Include="Common\GmailEmailService.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -312,6 +314,11 @@
     <Content Include="Areas\Admin\Views\Courses\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Courses\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Static.cshtml" />
+    <Content Include="Areas\Admin\Views\Enrollments\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Enrollments\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Enrollments\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Enrollments\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Enrollments\Index.cshtml" />
     <None Include="Areas\Admin\Views\Shared\_MyLayout.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_SlidePartial.cshtml" />
     <Content Include="Areas\Admin\Views\Students\Create.cshtml" />
@@ -319,6 +326,11 @@
     <Content Include="Areas\Admin\Views\Students\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Students\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Students\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Teachings\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Teachings\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Teachings\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Teachings\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Teachings\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -353,7 +365,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail2.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
@@ -378,6 +390,7 @@
     <Content Include="Views\Shared\_MyLayoutNonLogin.cshtml" />
     <Content Include="Views\Shared\_SlidePartial.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
