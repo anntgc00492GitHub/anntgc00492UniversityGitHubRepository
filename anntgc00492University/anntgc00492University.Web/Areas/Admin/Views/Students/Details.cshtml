@@ -1,0 +1,81 @@
+﻿@model Anntgc00492University.Model.Models.Student
+
+@{
+    ViewBag.Title = "Details";
+    ViewBag.ManagedObject = "Student";
+    ViewBag.ManagedAction = "Detail";
+}
+<div class="box">
+    <div class="box-header">
+        <h2>Student detail</h2>
+    </div>
+    <div class="box-body">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstMidName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FirstMidName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.EnrollmentDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EnrollmentDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(m => m.Enrollments)
+            </dt>
+            <dd>
+
+                <table class="table">
+                    @if (Model.Enrollments.Count>0)
+                    {
+                        <tr>
+                            <th>Course Title</th>
+                            <th>Grade</th>
+                        </tr>
+                        foreach (var item in Model.Enrollments)
+                        {
+                            <tr>
+
+                                <td>
+                                    @Html.DisplayFor(mi => item.Course.Title)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(mi => item.Grade)
+                                </td>
+
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="2">
+                                <p>There is no enrollment</p>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </dd>
+        </dl>
+    </div>
+    <div class="box-footer">
+        <p>
+            @Html.ActionLink("Edit this Student", "Edit", new { id = Model.ID }) |
+            @Html.ActionLink("Create new Enrollment", "Create", "Enrollments", new { area = "Admin", id = Model.ID }, null)|
+            @Html.ActionLink("Back to Student List", "Index")
+        </p>
+    </div>
+</div>
